@@ -27,5 +27,5 @@ if (Test-Path $CL) {
         }
 } else {
     Write-Error "$CL does not exist:"
-    Write-Error ".\shackletattle.ps1 <path\to\WoWCombatLog.txt>"
+    Write-Error ".\shackletattle.ps1 path/to/WoWCombatLog.txt"
 }

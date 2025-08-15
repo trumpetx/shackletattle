@@ -1,8 +1,8 @@
-#/bin/bash
+#!/bin/bash
 
 CL=$1
 
-if [ "" == "$1" ]; then
+if [ -z "$1" ]; then
   CL="./WoWCombatLog.txt"
 fi
 
