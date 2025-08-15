@@ -4,7 +4,7 @@ param(
 
 if (Test-Path $CL) {
     # Read the file, filter lines containing the phrase, take the 3rd whitespace-delimited field
-    $seen = @{}
+    $lastSeen = ""
     Get-Content $CL |
         Where-Object { $_ -match "Shackle Shatter hits" } |
         ForEach-Object {
@@ -18,9 +18,9 @@ if (Test-Path $CL) {
                     $trimmed = $tok
                 }
 
-                # Output only unique values, preserving order
-                if (-not $seen.ContainsKey($trimmed)) {
-                    $seen[$trimmed] = $true
+                # Output only if different from the last seen name (prevents consecutive duplicates)
+                if ($trimmed -ne $lastSeen) {
+                    $lastSeen = $trimmed
                     Write-Output $trimmed
                 }
             }
