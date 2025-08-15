@@ -12,11 +12,7 @@ if (Test-Path $CL) {
             if ($fields.Count -ge 3) {
                 $tok = $fields[2]
                 # Remove 's suffix if present (like sed "s/'s$//" in the bash script)
-                if ($tok -match "'s$") {
-                    $trimmed = $tok -replace "'s$", ""
-                } else {
-                    $trimmed = $tok
-                }
+                $trimmed = $tok -replace "'s$", ""
 
                 # Output only if different from the last seen name (prevents consecutive duplicates)
                 if ($trimmed -ne $lastSeen) {
