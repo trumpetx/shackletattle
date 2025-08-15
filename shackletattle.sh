@@ -7,7 +7,7 @@ if [ -z "$1" ]; then
 fi
 
 if [ -f ${CL} ]; then
-  grep "Shackle Shatter hits" ${CL} | awk '{print $3}' | uniq | rev | cut -c3- | rev
+  grep "Shackle Shatter hits" ${CL} | awk '{print $3}' | uniq | sed "s/'s$//"
 else
   >&2 echo "${CL} does not exist:"
   >&2 echo "./shackletattle.sh /path/to/WoWCombatLog.txt"

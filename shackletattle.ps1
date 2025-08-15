@@ -11,9 +11,9 @@ if (Test-Path $CL) {
             $fields = $_ -split '\s+'
             if ($fields.Count -ge 3) {
                 $tok = $fields[2]
-                # Remove last 2 characters (like rev | cut -c3- | rev in the bash script)
-                if ($tok.Length -gt 2) {
-                    $trimmed = $tok.Substring(0, $tok.Length - 2)
+                # Remove 's suffix if present (like sed "s/'s$//" in the bash script)
+                if ($tok -match "'s$") {
+                    $trimmed = $tok -replace "'s$", ""
                 } else {
                     $trimmed = $tok
                 }
